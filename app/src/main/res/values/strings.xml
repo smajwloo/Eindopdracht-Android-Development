@@ -1,5 +1,8 @@
 <resources>
     <string name="app_name">EndProjectAndroid</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+<!--CardsOverviewItems-->
+    <string name="cardsoverview_card_name">Name: %1$s</string>
+    <string name="cardsoverview_card_type">Type: %1$s</string>
+
 </resources>

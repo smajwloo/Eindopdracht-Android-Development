@@ -13,7 +13,9 @@ import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
+import com.android.volley.toolbox.ImageLoader;
 import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.NetworkImageView;
 import com.android.volley.toolbox.Volley;
 import com.example.endprojectandroid.R;
 
@@ -30,6 +32,7 @@ public class CardsOverviewFragment extends Fragment {
 
     private List<CardsOverviewViewModel> cards;
     private RecyclerView cardsOverviewRecyclerView;
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -84,7 +87,7 @@ public class CardsOverviewFragment extends Fragment {
                 JSONArray cardImgObjects = cardObject.getJSONArray("card_images");
                 String cardImgLink = cardImgObjects.getJSONObject(0).getString("image_url");
 
-                cards.add(new CardsOverviewViewModel(cardName, cardImgLink, cardType));
+                cards.add(new CardsOverviewViewModel(cardName, cardType, cardImgLink));
             }
         } catch (JSONException e) {
             e.printStackTrace();
