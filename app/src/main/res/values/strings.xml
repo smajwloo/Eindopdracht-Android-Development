@@ -1,8 +1,21 @@
 <resources>
     <string name="app_name">EndProjectAndroid</string>
 
-<!--CardsOverviewItems-->
+    <!--CardsOverviewItems-->
     <string name="cardsoverview_card_name">Name: %1$s</string>
     <string name="cardsoverview_card_type">Type: %1$s</string>
+
+    <!--CardInformationFragment-->
+    <string name="cardinformationfragment_atk">Attack: %1$d</string>
+    <string name="cardinformationfragment_def">Defence: %1$d</string>
+    <string name="cardinformationfragment_level">Level: %1$d</string>
+    <string name="cardinformationfragment_race">Race: %1$s</string>
+    <string name="cardinformationfragment_attribute">Attribute: %1$s</string>
+
+    <string name="cardinformationfragment_atk_na">Attack: NA</string>
+    <string name="cardinformationfragment_def_na">Defence: NA</string>
+    <string name="cardinformationfragment_level_na">Level: NA</string>
+    <string name="cardinformationfragment_race_na">Race: NA</string>
+    <string name="cardinformationfragment_attribute_na">Attribute: NA</string>
 
 </resources>

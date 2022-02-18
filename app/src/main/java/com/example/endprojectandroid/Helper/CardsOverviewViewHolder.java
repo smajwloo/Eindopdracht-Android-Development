@@ -1,8 +1,7 @@
-package com.example.endprojectandroid.Fragments;
+package com.example.endprojectandroid.Helper;
 
 import com.android.volley.toolbox.ImageLoader;
 import com.android.volley.toolbox.NetworkImageView;
-import com.example.endprojectandroid.Helper.NetworkImageViewLoader;
 import com.example.endprojectandroid.R;
 
 import android.content.Context;

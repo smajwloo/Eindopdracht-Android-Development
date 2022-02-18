@@ -13,10 +13,12 @@ import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
-import com.android.volley.toolbox.ImageLoader;
 import com.android.volley.toolbox.JsonObjectRequest;
-import com.android.volley.toolbox.NetworkImageView;
 import com.android.volley.toolbox.Volley;
+import com.example.endprojectandroid.Helper.CardsOverviewAdapter;
+import com.example.endprojectandroid.Helper.CardsOverviewViewModel;
+import com.example.endprojectandroid.MainActivity;
+import com.example.endprojectandroid.OnClickListener;
 import com.example.endprojectandroid.R;
 
 import org.json.JSONArray;
@@ -32,6 +34,7 @@ public class CardsOverviewFragment extends Fragment {
 
     private List<CardsOverviewViewModel> cards;
     private RecyclerView cardsOverviewRecyclerView;
+    private OnClickListener onClickListener;
 
 
     @Override
@@ -39,6 +42,8 @@ public class CardsOverviewFragment extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_cards_overview, container, false);
         cardsOverviewRecyclerView = view.findViewById(R.id.yugioh_cards_recycler_view);
+        onClickListener = (MainActivity) getActivity();
+
         receiveCardsFromAPI();
         return view;
     }
@@ -65,7 +70,7 @@ public class CardsOverviewFragment extends Fragment {
     private void setUpRecyclerView() {
         cardsOverviewRecyclerView.setHasFixedSize(true);
         cardsOverviewRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-        cardsOverviewRecyclerView.setAdapter(new CardsOverviewAdapter(cards));
+        cardsOverviewRecyclerView.setAdapter(new CardsOverviewAdapter(cards, onClickListener));
     }
 
     private void generateCardsList(JSONObject response) {
@@ -79,15 +84,37 @@ public class CardsOverviewFragment extends Fragment {
             for (int i = 0; i < responseObjects.length(); i++) {
                 JSONObject cardObject = responseObjects.getJSONObject(i);
 
-                // Receive name and type of card
+                // Receive variables of card
                 String cardName = cardObject.getString("name");
                 String cardType = cardObject.getString("type");
+
+                int cardAtk = -1;
+                if (cardObject.has("atk")) {
+                    cardAtk = cardObject.getInt("atk");
+                }
+
+                int cardDef = -1;
+                if (cardObject.has("def")) {
+                    cardDef = cardObject.getInt("def");
+                }
+
+                int cardLevel = -1;
+                if (cardObject.has("level")) {
+                    cardLevel = cardObject.getInt("level");
+                }
+
+                String cardRace = cardObject.getString("race");
+
+                String cardAttribute = null;
+                if (cardObject.has("attribute")) {
+                    cardAttribute = cardObject.getString("attribute");
+                }
 
                 // Receive image URL of card
                 JSONArray cardImgObjects = cardObject.getJSONArray("card_images");
                 String cardImgLink = cardImgObjects.getJSONObject(0).getString("image_url");
 
-                cards.add(new CardsOverviewViewModel(cardName, cardType, cardImgLink));
+                cards.add(new CardsOverviewViewModel(cardName, cardType, cardAtk, cardDef, cardLevel, cardRace, cardAttribute, cardImgLink));
             }
         } catch (JSONException e) {
             e.printStackTrace();

@@ -1,4 +1,4 @@
-package com.example.endprojectandroid.Fragments;
+package com.example.endprojectandroid.Helper;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -7,6 +7,7 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.endprojectandroid.OnClickListener;
 import com.example.endprojectandroid.R;
 
 import java.util.List;
@@ -14,9 +15,11 @@ import java.util.List;
 public class CardsOverviewAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
     private final List<CardsOverviewViewModel> cards;
+    private final OnClickListener onClickListener;
 
-    public CardsOverviewAdapter(List<CardsOverviewViewModel> cards) {
+    public CardsOverviewAdapter(List<CardsOverviewViewModel> cards, OnClickListener onClickListener) {
         this.cards = cards;
+        this.onClickListener = onClickListener;
     }
 
     @NonNull
@@ -29,6 +32,8 @@ public class CardsOverviewAdapter extends RecyclerView.Adapter<RecyclerView.View
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
         ((CardsOverviewViewHolder) holder).bindData(cards.get(position));
+        ((CardsOverviewViewHolder) holder).itemView.setOnClickListener(
+                view -> onClickListener.onItemSelected(cards.get(position)));
     }
 
     @Override
