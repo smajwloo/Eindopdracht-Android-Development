@@ -33,10 +33,10 @@ public class CardsOverviewViewHolder extends RecyclerView.ViewHolder {
     }
 
     public void bindData(CardsOverviewViewModel cardsOverviewViewModel) {
-        cardNameTextView.setText(context.getString(R.string.cardsoverview_card_name,
+        cardNameTextView.setText(context.getString(R.string.card_name_placeholder,
                 cardsOverviewViewModel.getCardName()));
 
-        cardTypeTextView.setText(context.getString(R.string.cardsoverview_card_type,
+        cardTypeTextView.setText(context.getString(R.string.card_type_placeholder,
                 cardsOverviewViewModel.getCardType()));
 
         imageLoader.get(cardsOverviewViewModel.getCardImgLink(), ImageLoader.getImageListener(networkImageView,

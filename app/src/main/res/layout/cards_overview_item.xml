@@ -15,24 +15,23 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <TextView
-            android:id="@+id/card_name"
+            android:id="@id/card_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/cardsoverview_card_name" />
+            android:text="@string/card_name_placeholder" />
 
         <TextView
-            android:id="@+id/card_type"
+            android:id="@id/card_type"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/cardsoverview_card_type" />
+            android:text="@string/card_type_placeholder" />
     </LinearLayout>
 
     <com.android.volley.toolbox.NetworkImageView
-        android:id="@+id/card_image"
+        android:id="@id/card_image"
         android:layout_width="80dp"
         android:layout_height="120dp"
         android:scaleType="fitXY"
-        android:background="@color/black"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>

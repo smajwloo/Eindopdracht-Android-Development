@@ -41,29 +41,29 @@ public class CardInformationFragment extends Fragment {
 
     private void setCardInformation(CardsOverviewViewModel cardsOverviewViewModel) {
         if (cardsOverviewViewModel.getCardAtk() == -1) {
-            cardAtk.setText(getString(R.string.cardinformationfragment_atk_na));
+            cardAtk.setText(getString(R.string.card_atk_na_placeholder));
         } else {
-            cardAtk.setText(getString(R.string.cardinformationfragment_atk, cardsOverviewViewModel.getCardAtk()));
+            cardAtk.setText(getString(R.string.card_atk_placeholder, cardsOverviewViewModel.getCardAtk()));
         }
 
         if (cardsOverviewViewModel.getCardDef() == -1) {
-            cardDef.setText(getString(R.string.cardinformationfragment_def_na));
+            cardDef.setText(getString(R.string.card_def_na_placeholder));
         } else {
-            cardDef.setText(getString(R.string.cardinformationfragment_def, cardsOverviewViewModel.getCardDef()));
+            cardDef.setText(getString(R.string.card_def_placeholder, cardsOverviewViewModel.getCardDef()));
         }
 
         if (cardsOverviewViewModel.getCardLevel() == -1) {
-            cardLevel.setText(getString(R.string.cardinformationfragment_level_na));
+            cardLevel.setText(getString(R.string.card_level_na_placeholder));
         } else {
-            cardLevel.setText(getString(R.string.cardinformationfragment_level, cardsOverviewViewModel.getCardLevel()));
+            cardLevel.setText(getString(R.string.card_level_placeholder, cardsOverviewViewModel.getCardLevel()));
         }
 
-        cardRace.setText(getString(R.string.cardinformationfragment_race, cardsOverviewViewModel.getCardRace()));
+        cardRace.setText(getString(R.string.card_race_placeholder, cardsOverviewViewModel.getCardRace()));
 
         if (cardsOverviewViewModel.getCardAttribute() == null) {
-            cardAttribute.setText(getString(R.string.cardinformationfragment_attribute_na));
+            cardAttribute.setText(getString(R.string.card_attribute_na_placeholder));
         } else {
-            cardAttribute.setText(getString(R.string.cardinformationfragment_attribute, cardsOverviewViewModel.getCardAttribute()));
+            cardAttribute.setText(getString(R.string.card_attribute_placeholder, cardsOverviewViewModel.getCardAttribute()));
         }
     }
 }

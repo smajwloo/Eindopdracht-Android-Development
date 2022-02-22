@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <item name="card_name" type="id"/>
+    <item name="card_type" type="id"/>
+    <item name="card_image" type="id"/>
+    <item name="card_description" type="id"/>
+    <item name="card_atk" type="id"/>
+    <item name="card_def" type="id"/>
+    <item name="card_level" type="id"/>
+    <item name="card_race" type="id"/>
+    <item name="card_attribute" type="id"/>
+</resources>

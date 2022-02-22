@@ -7,6 +7,7 @@ public class CardsOverviewViewModel implements Parcelable {
 
     private String cardName;
     private String cardType;
+    private String cardDescription;
     private int cardAtk;
     private int cardDef;
     private int cardLevel;
@@ -16,6 +17,7 @@ public class CardsOverviewViewModel implements Parcelable {
 
     public CardsOverviewViewModel(final String cardName,
                                   final String cardType,
+                                  final String cardDescription,
                                   final int cardAtk,
                                   final int cardDef,
                                   final int cardLevel,
@@ -24,6 +26,7 @@ public class CardsOverviewViewModel implements Parcelable {
                                   final String cardImgLink) {
         setCardName(cardName);
         setCardType(cardType);
+        setCardDescription(cardDescription);
         setCardAtk(cardAtk);
         setCardDef(cardDef);
         setCardLevel(cardLevel);
@@ -35,6 +38,7 @@ public class CardsOverviewViewModel implements Parcelable {
     protected CardsOverviewViewModel(Parcel in) {
         cardName = in.readString();
         cardType = in.readString();
+        cardDescription = in.readString();
         cardAtk = in.readInt();
         cardDef = in.readInt();
         cardLevel = in.readInt();
@@ -69,6 +73,14 @@ public class CardsOverviewViewModel implements Parcelable {
 
     public void setCardType(String cardType) {
         this.cardType = cardType;
+    }
+
+    public String getCardDescription() {
+        return cardDescription;
+    }
+
+    public void setCardDescription(String cardDescription) {
+        this.cardDescription = cardDescription;
     }
 
     public int getCardAtk() {
@@ -123,6 +135,7 @@ public class CardsOverviewViewModel implements Parcelable {
     public void writeToParcel(Parcel parcel, int i) {
         parcel.writeString(cardName);
         parcel.writeString(cardType);
+        parcel.writeString(cardDescription);
         parcel.writeInt(cardAtk);
         parcel.writeInt(cardDef);
         parcel.writeInt(cardLevel);

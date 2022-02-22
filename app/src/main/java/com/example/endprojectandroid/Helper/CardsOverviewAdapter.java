@@ -43,6 +43,6 @@ public class CardsOverviewAdapter extends RecyclerView.Adapter<RecyclerView.View
 
     @Override
     public int getItemViewType(int position) {
-        return R.layout.card;
+        return R.layout.cards_overview_item;
     }
 }

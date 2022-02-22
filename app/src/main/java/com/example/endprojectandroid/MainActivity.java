@@ -30,13 +30,14 @@ public class MainActivity extends AppCompatActivity implements OnClickListener {
 
         if(isPortrait) {
             Intent cardInformationIntent = new Intent(this, CardInformationActivity.class);
+            cardInformationIntent.putExtra("cardsOverviewViewModel", cardsOverviewViewModel);
             startActivity(cardInformationIntent);
         } else {
             FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
 
             CardInformationFragment cardInformationFragment = new CardInformationFragment();
             Bundle bundle = new Bundle();
-            bundle.putParcelable("cardsOverviewViewModel", (Parcelable) cardsOverviewViewModel);
+            bundle.putParcelable("cardsOverviewViewModel", cardsOverviewViewModel);
             cardInformationFragment.setArguments(bundle);
             fragmentTransaction.replace(R.id.card_info_fragment, cardInformationFragment).commit();
         }

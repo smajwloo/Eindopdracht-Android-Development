@@ -87,6 +87,7 @@ public class CardsOverviewFragment extends Fragment {
                 // Receive variables of card
                 String cardName = cardObject.getString("name");
                 String cardType = cardObject.getString("type");
+                String cardDescription = cardObject.getString("desc");
 
                 int cardAtk = -1;
                 if (cardObject.has("atk")) {
@@ -114,7 +115,7 @@ public class CardsOverviewFragment extends Fragment {
                 JSONArray cardImgObjects = cardObject.getJSONArray("card_images");
                 String cardImgLink = cardImgObjects.getJSONObject(0).getString("image_url");
 
-                cards.add(new CardsOverviewViewModel(cardName, cardType, cardAtk, cardDef, cardLevel, cardRace, cardAttribute, cardImgLink));
+                cards.add(new CardsOverviewViewModel(cardName, cardType, cardDescription, cardAtk, cardDef, cardLevel, cardRace, cardAttribute, cardImgLink));
             }
         } catch (JSONException e) {
             e.printStackTrace();
