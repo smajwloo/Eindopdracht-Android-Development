@@ -10,9 +10,10 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.example.endprojectandroid.Helper.CardsOverviewViewModel;
+import com.example.endprojectandroid.Helper.CheckVariableAvailability;
 import com.example.endprojectandroid.R;
 
-public class CardInformationFragment extends Fragment {
+public class CardInformationFragment extends Fragment implements CheckVariableAvailability {
 
     private TextView cardAtk;
     private TextView cardDef;
@@ -40,30 +41,29 @@ public class CardInformationFragment extends Fragment {
     }
 
     private void setCardInformation(CardsOverviewViewModel cardsOverviewViewModel) {
-        if (cardsOverviewViewModel.getCardAtk() == -1) {
-            cardAtk.setText(getString(R.string.card_atk_na_placeholder));
+        setVariableTextInteger(cardAtk, getString(R.string.card_atk_placeholder), cardsOverviewViewModel.getCardAtk());
+        setVariableTextInteger(cardDef, getString(R.string.card_def_placeholder), cardsOverviewViewModel.getCardDef());
+        setVariableTextInteger(cardLevel, getString(R.string.card_level_placeholder), cardsOverviewViewModel.getCardLevel());
+
+        setVariableTextString(cardRace, getString(R.string.card_race_placeholder), cardsOverviewViewModel.getCardRace());
+        setVariableTextString(cardAttribute, getString(R.string.card_attribute_placeholder), cardsOverviewViewModel.getCardAttribute());
+    }
+
+    @Override
+    public void setVariableTextInteger(TextView textView, String placeholder, int variableValue) {
+        if (variableValue == -1) {
+            textView.setText(getString(R.string.na_placeholder, placeholder));
         } else {
-            cardAtk.setText(getString(R.string.card_atk_placeholder, cardsOverviewViewModel.getCardAtk()));
+            textView.setText(getString(R.string.variable_placeholder_integer, placeholder, variableValue));
         }
+    }
 
-        if (cardsOverviewViewModel.getCardDef() == -1) {
-            cardDef.setText(getString(R.string.card_def_na_placeholder));
+    @Override
+    public void setVariableTextString(TextView textView, String placeholder, String variableValue) {
+        if (variableValue == null) {
+            textView.setText(getString(R.string.na_placeholder, placeholder));
         } else {
-            cardDef.setText(getString(R.string.card_def_placeholder, cardsOverviewViewModel.getCardDef()));
-        }
-
-        if (cardsOverviewViewModel.getCardLevel() == -1) {
-            cardLevel.setText(getString(R.string.card_level_na_placeholder));
-        } else {
-            cardLevel.setText(getString(R.string.card_level_placeholder, cardsOverviewViewModel.getCardLevel()));
-        }
-
-        cardRace.setText(getString(R.string.card_race_placeholder, cardsOverviewViewModel.getCardRace()));
-
-        if (cardsOverviewViewModel.getCardAttribute() == null) {
-            cardAttribute.setText(getString(R.string.card_attribute_na_placeholder));
-        } else {
-            cardAttribute.setText(getString(R.string.card_attribute_placeholder, cardsOverviewViewModel.getCardAttribute()));
+            textView.setText(getString(R.string.variable_placeholder_string, placeholder, variableValue));
         }
     }
 }

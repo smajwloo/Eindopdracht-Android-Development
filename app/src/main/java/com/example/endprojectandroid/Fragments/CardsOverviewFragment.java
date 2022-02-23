@@ -18,7 +18,7 @@ import com.android.volley.toolbox.Volley;
 import com.example.endprojectandroid.Helper.CardsOverviewAdapter;
 import com.example.endprojectandroid.Helper.CardsOverviewViewModel;
 import com.example.endprojectandroid.MainActivity;
-import com.example.endprojectandroid.OnClickListener;
+import com.example.endprojectandroid.Helper.OnClickListener;
 import com.example.endprojectandroid.R;
 
 import org.json.JSONArray;
@@ -115,7 +115,9 @@ public class CardsOverviewFragment extends Fragment {
                 JSONArray cardImgObjects = cardObject.getJSONArray("card_images");
                 String cardImgLink = cardImgObjects.getJSONObject(0).getString("image_url");
 
-                cards.add(new CardsOverviewViewModel(cardName, cardType, cardDescription, cardAtk, cardDef, cardLevel, cardRace, cardAttribute, cardImgLink));
+                cards.add(new CardsOverviewViewModel(cardName, cardType, cardDescription, cardAtk,
+                                                     cardDef, cardLevel, cardRace, cardAttribute,
+                                                     cardImgLink));
             }
         } catch (JSONException e) {
             e.printStackTrace();

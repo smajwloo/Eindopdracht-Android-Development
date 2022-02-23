@@ -7,7 +7,6 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.endprojectandroid.OnClickListener;
 import com.example.endprojectandroid.R;
 
 import java.util.List;

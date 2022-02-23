@@ -6,11 +6,11 @@ import androidx.fragment.app.FragmentTransaction;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Bundle;
-import android.os.Parcelable;
 
 import com.example.endprojectandroid.Fragments.CardInformationFragment;
 import com.example.endprojectandroid.Fragments.CardsOverviewFragment;
 import com.example.endprojectandroid.Helper.CardsOverviewViewModel;
+import com.example.endprojectandroid.Helper.OnClickListener;
 
 public class MainActivity extends AppCompatActivity implements OnClickListener {
 

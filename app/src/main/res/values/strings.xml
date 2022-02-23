@@ -4,17 +4,15 @@
     <!--Card variables-->
     <string name="card_name_placeholder">Name: %1$s</string>
     <string name="card_type_placeholder">Type: %1$s</string>
-    <string name="card_atk_placeholder">Attack: %1$d</string>
-    <string name="card_def_placeholder">Defence: %1$d</string>
-    <string name="card_level_placeholder">Level: %1$d</string>
-    <string name="card_race_placeholder">Race: %1$s</string>
-    <string name="card_attribute_placeholder">Attribute: %1$s</string>
+    <string name="card_atk_placeholder">Attack:</string>
+    <string name="card_def_placeholder">Defence:</string>
+    <string name="card_level_placeholder">Level:</string>
+    <string name="card_race_placeholder">Race:</string>
+    <string name="card_attribute_placeholder">Attribute:</string>
 
-    <!--Card variables when Not Available-->
-    <string name="card_atk_na_placeholder">Attack: NA</string>
-    <string name="card_def_na_placeholder">Defence: NA</string>
-    <string name="card_level_na_placeholder">Level: NA</string>
-    <string name="card_race_na_placeholder">Race: NA</string>
-    <string name="card_attribute_na_placeholder">Attribute: NA</string>
+    <!--Card variables placeholders-->
+    <string name="variable_placeholder_integer">%1$s %2$d</string>
+    <string name="variable_placeholder_string">%1$s %2$s</string>
+    <string name="na_placeholder">%1$s NA</string>
 
 </resources>
