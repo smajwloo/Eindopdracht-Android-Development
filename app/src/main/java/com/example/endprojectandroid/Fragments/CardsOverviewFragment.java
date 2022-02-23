@@ -1,11 +1,15 @@
 package com.example.endprojectandroid.Fragments;
 
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
+import androidx.preference.PreferenceManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -15,22 +19,26 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
+import com.example.endprojectandroid.ErrorActivity;
 import com.example.endprojectandroid.Helper.CardsOverviewAdapter;
 import com.example.endprojectandroid.Helper.CardsOverviewViewModel;
 import com.example.endprojectandroid.MainActivity;
 import com.example.endprojectandroid.Helper.OnClickListener;
 import com.example.endprojectandroid.R;
+import com.example.endprojectandroid.SettingsActivity;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
+import java.util.Set;
 
 public class CardsOverviewFragment extends Fragment {
 
-    private static final String API_URL = "https://db.ygoprodeck.com/api/v7/cardinfo.php";
+    private static final String API_URL = "https://db.ygoprodeck.com/api/v7/cardinfo.php?";
 
     private List<CardsOverviewViewModel> cards;
     private RecyclerView cardsOverviewRecyclerView;
@@ -44,15 +52,51 @@ public class CardsOverviewFragment extends Fragment {
         cardsOverviewRecyclerView = view.findViewById(R.id.yugioh_cards_recycler_view);
         onClickListener = (MainActivity) getActivity();
 
-        receiveCardsFromAPI();
+        String apiUrlWithFilters = setupApiUrlFilters();
+        receiveCardsFromAPI(apiUrlWithFilters);
         return view;
     }
 
-    private void receiveCardsFromAPI() {
+    private String setupApiUrlFilters() {
+        if (getContext() == null) return "";
+
+//        Receive SharedPreferences of card variables
+        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getContext());
+        String cardName = sharedPreferences.getString("enter_card_name", "");
+        Set<String> cardTypes = sharedPreferences.getStringSet("select_card_type",  Collections.emptySet());
+
+//        Apply filters before sending API request
+        String filteredApiUrl = API_URL;
+        filteredApiUrl = applyFilter("name", cardName, filteredApiUrl);
+
+        StringBuilder combinedCardTypes = new StringBuilder();
+        int index = 1;
+        for (String cardType: cardTypes) {
+            combinedCardTypes.append(cardType);
+
+            if (index != cardTypes.size()) combinedCardTypes.append(",");
+            index++;
+        }
+        filteredApiUrl = applyFilter("type", combinedCardTypes.toString(), filteredApiUrl);
+
+        return filteredApiUrl;
+    }
+
+    private String applyFilter(String filter, String filterValue, String filteredApiUrl) {
+        if (!filterValue.equals("")) {
+            if (!filteredApiUrl.endsWith("?")) {
+                filteredApiUrl = filteredApiUrl + "&";
+            }
+            filteredApiUrl = filteredApiUrl + filter + "=" + filterValue;
+        }
+        return filteredApiUrl;
+    }
+
+    private void receiveCardsFromAPI(String apiUrlWithFilter) {
         if (getContext() == null) return;
 
         RequestQueue requestQueue = Volley.newRequestQueue(getContext());
-        JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, API_URL, null, new Response.Listener<JSONObject>() {
+        JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, apiUrlWithFilter, null, new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject response) {
                 generateCardsList(response);
@@ -61,7 +105,15 @@ public class CardsOverviewFragment extends Fragment {
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                System.out.println("Error: " + error);
+                if (error.networkResponse.statusCode == 400) {
+                    Toast.makeText(getContext(), R.string.error_text_no_cards_found, Toast.LENGTH_LONG).show();
+                    Intent settingsIntent = new Intent(getContext(), SettingsActivity.class);
+                    startActivity(settingsIntent);
+                } else {
+                    Intent errorActivity = new Intent(getContext(), ErrorActivity.class);
+                    startActivity(errorActivity);
+                }
+                if (getActivity() != null) getActivity().finish();
             }
         });
         requestQueue.add(request);

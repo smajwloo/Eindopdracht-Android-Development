@@ -1,6 +1,16 @@
 <resources>
     <string name="app_name">EndProjectAndroid</string>
 
+    <!--Main menu-->
+    <string name="menu_main_name">Settings</string>
+
+    <!--Settings fragment-->
+    <string name="settings_specify_card">Specify card</string>
+    <string name="settings_enter_card_name">Enter card name</string>
+    <string name="settings_select_card_type">Select card type</string>
+    <string name="settings_category_filters">Filters</string>
+    <string name="save_filters_button">save_filters_button</string>
+
     <!--Card variables-->
     <string name="card_name_placeholder">Name: %1$s</string>
     <string name="card_type_placeholder">Type: %1$s</string>
@@ -14,5 +24,10 @@
     <string name="variable_placeholder_integer">%1$s %2$d</string>
     <string name="variable_placeholder_string">%1$s %2$s</string>
     <string name="na_placeholder">%1$s NA</string>
+
+    <!--Error-->
+    <string name="error_text_exception">Something went wrong!\nPlease restart the application</string>
+    <string name="error_image_text">Something went wrong!</string>
+    <string name="error_text_no_cards_found">No card matching your filters was found.</string>
 
 </resources>

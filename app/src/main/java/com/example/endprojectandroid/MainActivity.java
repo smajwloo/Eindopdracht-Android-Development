@@ -1,11 +1,14 @@
 package com.example.endprojectandroid;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentTransaction;
 
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 
 import com.example.endprojectandroid.Fragments.CardInformationFragment;
 import com.example.endprojectandroid.Fragments.CardsOverviewFragment;
@@ -41,5 +44,19 @@ public class MainActivity extends AppCompatActivity implements OnClickListener {
             cardInformationFragment.setArguments(bundle);
             fragmentTransaction.replace(R.id.card_info_fragment, cardInformationFragment).commit();
         }
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_main, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        Intent settingsIntent = new Intent(this, SettingsActivity.class);
+        startActivity(settingsIntent);
+        finish();
+        return true;
     }
 }

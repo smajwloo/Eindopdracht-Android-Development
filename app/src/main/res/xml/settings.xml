@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+    <PreferenceCategory
+        android:title="@string/settings_category_filters">
+        <EditTextPreference
+            android:inputType="textCapWords"
+            android:key="enter_card_name"
+            android:title="@string/settings_enter_card_name" />
+
+        <MultiSelectListPreference
+            android:entries="@array/card_types"
+            android:entryValues="@array/card_types"
+            android:key="select_card_type"
+            android:title="@string/settings_select_card_type"/>
+    </PreferenceCategory>
+
+    <Preference
+        android:title="Save filters"
+        android:key="@string/save_filters_button" />
+</PreferenceScreen>

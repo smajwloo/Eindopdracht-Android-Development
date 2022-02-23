@@ -13,6 +13,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.EndProjectAndroid">
         <activity
+            android:name=".ErrorActivity"
+            android:exported="false" />
+        <activity
+            android:name=".SettingsActivity"
+            android:exported="false" />
+        <activity
             android:name=".CardInformationActivity"
             android:exported="false" />
         <activity
