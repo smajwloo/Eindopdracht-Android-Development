@@ -13,6 +13,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.EndProjectAndroid">
         <activity
+            android:name=".EditCardActivity"
+            android:exported="false" />
+        <activity
             android:name=".ErrorActivity"
             android:exported="false" />
         <activity

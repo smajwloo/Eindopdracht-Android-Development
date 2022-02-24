@@ -4,19 +4,28 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_margin="8dp"
+    android:layout_margin="@dimen/page_border_margin"
     tools:context=".CardInformationActivity">
 
     <TextView
         android:id="@id/card_name"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:paddingBottom="8dp"
         android:textAlignment="center"
         android:textSize="32sp"
-        android:paddingBottom="8dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/edit_card_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/edit_card_text"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/card_name"
+        app:layout_constraintBottom_toTopOf="@id/card_information_content_layout"/>
 
     <LinearLayout
         android:id="@+id/card_information_content_layout"
@@ -26,7 +35,7 @@
         app:layout_constraintBottom_toTopOf="@id/card_description"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/card_name">
+        app:layout_constraintTop_toBottomOf="@id/edit_card_button">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/card_information_variables"

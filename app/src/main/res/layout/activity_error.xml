@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:gravity="center"
-    android:layout_margin="8dp"
+    android:layout_margin="@dimen/page_border_margin"
     tools:context=".ErrorActivity"
     tools:ignore="UseCompoundDrawables">
 

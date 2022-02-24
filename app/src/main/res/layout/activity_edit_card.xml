@@ -1,0 +1,235 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_margin="@dimen/page_border_margin"
+    tools:context=".CardInformationActivity">
+
+    <TextView
+        android:id="@+id/edit_card_layout_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingBottom="8dp"
+        android:textAlignment="center"
+        android:textSize="32sp"
+        android:text="@string/edit_card_text"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <!--Name variable non editable-->
+    <LinearLayout
+        android:id="@+id/card_name_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/edit_card_layout_title"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/card_name_label"
+            android:layout_width="@dimen/edit_card_label_width"
+            android:layout_height="wrap_content"
+            android:text="@string/edit_card_name_placeholder" />
+
+        <TextView
+            android:id="@+id/card_name_value"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+
+    <!--Type variable non editable-->
+    <LinearLayout
+        android:id="@+id/card_type_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/card_name_layout"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/card_type_label"
+            android:layout_width="@dimen/edit_card_label_width"
+            android:layout_height="wrap_content"
+            android:text="@string/edit_card_type_placeholder" />
+
+        <TextView
+            android:id="@+id/card_type_value"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+
+    <!--Attack variable-->
+    <LinearLayout
+        android:id="@+id/card_atk_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/card_type_layout"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/card_atk_label"
+            android:layout_width="@dimen/edit_card_label_width"
+            android:layout_height="wrap_content"
+            android:labelFor="@id/card_atk_input"
+            android:text="@string/edit_card_atk_placeholder" />
+
+        <EditText
+            android:id="@+id/card_atk_input"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:inputType="number"
+            android:importantForAutofill="no" />
+    </LinearLayout>
+
+    <!--Defence variable-->
+    <LinearLayout
+        android:id="@+id/card_def_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/card_atk_layout"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/card_def_label"
+            android:layout_width="@dimen/edit_card_label_width"
+            android:layout_height="wrap_content"
+            android:labelFor="@id/card_def_input"
+            android:text="@string/card_def_placeholder" />
+
+        <EditText
+            android:id="@+id/card_def_input"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:inputType="number"
+            android:importantForAutofill="no" />
+    </LinearLayout>
+
+    <!--Level variable-->
+    <LinearLayout
+        android:id="@+id/card_level_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/card_def_layout"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/card_level_label"
+            android:layout_width="@dimen/edit_card_label_width"
+            android:layout_height="wrap_content"
+            android:labelFor="@id/card_level_input"
+            android:text="@string/card_level_placeholder" />
+
+        <EditText
+            android:id="@+id/card_level_input"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:inputType="number"
+            android:importantForAutofill="no" />
+    </LinearLayout>
+
+    <!--Race variable-->
+    <LinearLayout
+        android:id="@+id/card_race_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/card_level_layout"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/card_race_label"
+            android:layout_width="@dimen/edit_card_label_width"
+            android:layout_height="wrap_content"
+            android:labelFor="@id/card_race_input"
+            android:text="@string/card_race_placeholder" />
+
+        <EditText
+            android:id="@+id/card_race_input"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:inputType="text"
+            android:importantForAutofill="no" />
+    </LinearLayout>
+
+    <!--Attribute variable-->
+    <LinearLayout
+        android:id="@+id/card_attribute_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/card_race_layout">
+
+        <TextView
+            android:id="@+id/card_attribute_label"
+            android:layout_width="@dimen/edit_card_label_width"
+            android:layout_height="wrap_content"
+            android:labelFor="@id/card_attribute_input"
+            android:text="@string/card_attribute_placeholder" />
+
+        <EditText
+            android:id="@+id/card_attribute_input"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:importantForAutofill="no"
+            android:inputType="text" />
+    </LinearLayout>
+
+    <!--Description variable-->
+    <LinearLayout
+        android:id="@+id/card_description_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/card_attribute_layout">
+
+        <TextView
+            android:id="@+id/card_description_label"
+            android:layout_width="@dimen/edit_card_label_width"
+            android:layout_height="wrap_content"
+            android:labelFor="@id/card_description_input"
+            android:text="@string/card_description_placeholder" />
+
+        <EditText
+            android:id="@+id/card_description_input"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:minHeight="48dp"
+            android:importantForAutofill="no"
+            android:inputType="textMultiLine"
+            android:maxLines="8" />
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/cancel_edit_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="@string/cancel_edit_button_text"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/card_description_layout" />
+
+    <Button
+        android:id="@+id/save_edit_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="@string/save_edit_button_text"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/card_description_layout" />
+</androidx.constraintlayout.widget.ConstraintLayout>
