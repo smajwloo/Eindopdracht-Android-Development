@@ -2,7 +2,9 @@ package com.example.endprojectandroid;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.EditText;
@@ -12,7 +14,6 @@ import com.example.endprojectandroid.Helper.CardsOverviewViewModel;
 
 public class EditCardActivity extends AppCompatActivity {
 
-//    TODO: Make sure the edited variables will be saved somehow, such that it can be found after refreshing.
     private CardsOverviewViewModel cardsOverviewViewModel;
     private EditText cardAtkInput;
     private EditText cardDefInput;
@@ -46,7 +47,7 @@ public class EditCardActivity extends AppCompatActivity {
 
         Button saveEditButton = findViewById(R.id.save_edit_button);
         saveEditButton.setOnClickListener(e -> {
-            editVariables();
+            saveEditVariables();
             startCardInformationActivity();
         });
 
@@ -69,15 +70,20 @@ public class EditCardActivity extends AppCompatActivity {
         }
     }
 
-    private void editVariables() {
+    private void saveEditVariables() {
         if (cardsOverviewViewModel == null) return;
 
-        cardsOverviewViewModel.setCardAtk(editTextToInteger(cardAtkInput.getText().toString()));
-        cardsOverviewViewModel.setCardDef(editTextToInteger(cardDefInput.getText().toString()));
-        cardsOverviewViewModel.setCardLevel(editTextToInteger(cardLevelInput.getText().toString()));
-        cardsOverviewViewModel.setCardRace(checkEditTextIsEmpty(cardRaceInput.getText().toString()));
-        cardsOverviewViewModel.setCardAttribute(checkEditTextIsEmpty(cardAttributeInput.getText().toString()));
-        cardsOverviewViewModel.setCardDescription(checkEditTextIsEmpty(cardDescriptionInput.getText().toString()));
+        SharedPreferences sharedPreferences = getSharedPreferences(cardsOverviewViewModel.getCardName(), Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+
+        editor.putInt("attack", editTextToInteger(cardAtkInput.getText().toString()));
+        editor.putInt("defence", editTextToInteger(cardDefInput.getText().toString()));
+        editor.putInt("level", editTextToInteger(cardLevelInput.getText().toString()));
+        editor.putString("race", checkEditTextIsEmpty(cardRaceInput.getText().toString()));
+        editor.putString("attribute", checkEditTextIsEmpty(cardAttributeInput.getText().toString()));
+        editor.putString("description", checkEditTextIsEmpty(cardDescriptionInput.getText().toString()));
+
+        editor.apply();
     }
 
     private int editTextToInteger(String inputText) {

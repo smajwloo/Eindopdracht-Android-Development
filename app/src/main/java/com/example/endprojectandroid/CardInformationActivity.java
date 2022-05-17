@@ -1,6 +1,8 @@
 package com.example.endprojectandroid;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.TextView;
@@ -25,6 +27,7 @@ public class CardInformationActivity extends AppCompatActivity implements CheckV
     private TextView cardRace;
     private TextView cardAttribute;
     private NetworkImageView networkImageView;
+    private CardsOverviewViewModel cardsOverviewViewModel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,11 +45,11 @@ public class CardInformationActivity extends AppCompatActivity implements CheckV
         networkImageView = findViewById(R.id.card_image);
 
         if (getIntent().getExtras() != null) {
-            CardsOverviewViewModel cardsOverviewViewModel = getIntent().getExtras().getParcelable("cardsOverviewViewModel");
-            setCardInformation(cardsOverviewViewModel);
+            cardsOverviewViewModel = getIntent().getExtras().getParcelable("cardsOverviewViewModel");
+            setCardInformation();
 
             Button editCardButton = findViewById(R.id.edit_card_button);
-            editCardButton.setOnClickListener(e -> onEditButtonClick(cardsOverviewViewModel));
+            editCardButton.setOnClickListener(e -> onEditButtonClick());
         }
     }
 
@@ -68,7 +71,13 @@ public class CardInformationActivity extends AppCompatActivity implements CheckV
         }
     }
 
-    private void setCardInformation(CardsOverviewViewModel cardsOverviewViewModel) {
+    private void setCardInformation() {
+        SharedPreferences sharedPreferences = getSharedPreferences(cardsOverviewViewModel.getCardName(), Context.MODE_PRIVATE);
+
+        if(sharedPreferences != null) {
+            receiveSharedPreferencesInformation(sharedPreferences);
+        }
+
         cardName.setText(cardsOverviewViewModel.getCardName());
         cardType.setText(getString(R.string.card_type_placeholder, cardsOverviewViewModel.getCardType()));
         cardDescription.setText(cardsOverviewViewModel.getCardDescription());
@@ -76,7 +85,6 @@ public class CardInformationActivity extends AppCompatActivity implements CheckV
         setVariableTextInteger(cardAtk, getString(R.string.card_atk_placeholder), cardsOverviewViewModel.getCardAtk());
         setVariableTextInteger(cardDef, getString(R.string.card_def_placeholder), cardsOverviewViewModel.getCardDef());
         setVariableTextInteger(cardLevel, getString(R.string.card_level_placeholder), cardsOverviewViewModel.getCardLevel());
-
         setVariableTextString(cardRace, getString(R.string.card_race_placeholder), cardsOverviewViewModel.getCardRace());
         setVariableTextString(cardAttribute, getString(R.string.card_attribute_placeholder), cardsOverviewViewModel.getCardAttribute());
 
@@ -84,7 +92,17 @@ public class CardInformationActivity extends AppCompatActivity implements CheckV
         networkImageView.setImageUrl(cardsOverviewViewModel.getCardImgLink(), imageLoader);
     }
 
-    private void onEditButtonClick(CardsOverviewViewModel cardsOverviewViewModel) {
+    private void receiveSharedPreferencesInformation(SharedPreferences sharedPreferences) {
+        cardsOverviewViewModel.setCardAtk(sharedPreferences.getInt("attack", cardsOverviewViewModel.getCardAtk()));
+        cardsOverviewViewModel.setCardDef(sharedPreferences.getInt("defence", cardsOverviewViewModel.getCardDef()));
+        cardsOverviewViewModel.setCardLevel(sharedPreferences.getInt("level", cardsOverviewViewModel.getCardLevel()));
+
+        cardsOverviewViewModel.setCardRace(sharedPreferences.getString("race", null));
+        cardsOverviewViewModel.setCardAttribute(sharedPreferences.getString("attribute", null));
+        cardsOverviewViewModel.setCardDescription(sharedPreferences.getString("description", null));
+    }
+
+    private void onEditButtonClick() {
         Intent editCardActivity = new Intent(this, EditCardActivity.class);
         editCardActivity.putExtra("cardsOverviewViewModel", cardsOverviewViewModel);
         startActivity(editCardActivity);

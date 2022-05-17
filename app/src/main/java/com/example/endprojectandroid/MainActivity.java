@@ -56,7 +56,6 @@ public class MainActivity extends AppCompatActivity implements OnClickListener {
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         Intent settingsIntent = new Intent(this, SettingsActivity.class);
         startActivity(settingsIntent);
-        finish();
         return true;
     }
 }
